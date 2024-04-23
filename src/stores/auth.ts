@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { combine, persist, createJSONStorage } from 'zustand/middleware';
+import { combine, persist } from 'zustand/middleware';
 
 import { decodeToken } from '@/utils/jwt';
 
@@ -25,7 +25,7 @@ const useAuthStore = create(
     })),
     {
       name: 'auth-storage',
-      storage: createJSONStorage(() => zustandStorage),
+      storage: zustandStorage,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       partialize: ({ currentUser, ...state }) => state,
       merge: (state: any, currentState) => {

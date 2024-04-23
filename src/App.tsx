@@ -3,16 +3,16 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Analytics from '@/configs/Analytics';
+import ErrorHandler from '@/configs/ErrorHandler';
 import KeepWake from '@/configs/KeepAwake';
 import NotificationsConfig from '@/configs/Notifications';
 import ReactQueryConfig from '@/configs/ReactQuery';
 import ConfigTheme from '@/configs/Theme';
 import ToastConfig from '@/configs/Toast';
+import UpdateChecker from '@/configs/UpdateChecker';
 import { IS_DEV } from '@/envs';
-import ErrorHandler from '@/ErrorHandler';
 import { useTw } from '@/hooks/useTw';
 import Router from '@/router';
-import UpdateChecker from '@/UpdateChecker';
 
 function App(): JSX.Element {
   const tw = useTw();

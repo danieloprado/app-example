@@ -1,10 +1,10 @@
 import { MMKV } from 'react-native-mmkv';
 
-import { StateStorage } from 'zustand/middleware';
+import { createJSONStorage } from 'zustand/middleware';
 
 export const storage = new MMKV({ id: 'tracers-app' });
 
-export const zustandStorage: StateStorage = {
+export const zustandStorage = createJSONStorage(() => ({
   setItem: (name, value) => {
     return storage.set(name, value);
   },
@@ -15,4 +15,4 @@ export const zustandStorage: StateStorage = {
   removeItem: name => {
     return storage.delete(name);
   }
-};
+}));

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { combine, createJSONStorage, persist } from 'zustand/middleware';
+import { combine, persist } from 'zustand/middleware';
 
 import { UseNotificationReceivedHandler } from '@/configs/Notifications/types';
 
@@ -27,7 +27,7 @@ const useNotificationStore = create(
     ),
     {
       name: 'notification-storage',
-      storage: createJSONStorage(() => zustandStorage),
+      storage: zustandStorage,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       partialize: ({ receivedHandlers, ...state }) => state
     }
