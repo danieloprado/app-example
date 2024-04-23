@@ -1,0 +1,6 @@
+{
+  "extends": ["@eduzz/eslint-config/react-native"],
+  "rules": {
+    "linebreak-style": "off"
+  }
+}

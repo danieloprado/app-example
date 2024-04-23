@@ -1,0 +1,10 @@
+{
+  "reject": [
+    "@react-native-community/netinfo",
+    "@sentry/react-native",
+    "expo-build-properties",
+    "expo-dev-client",
+    "react-native",
+    "react-native-safe-area-context"
+  ]
+}

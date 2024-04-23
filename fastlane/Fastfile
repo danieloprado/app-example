@@ -1,0 +1,76 @@
+
+platform :android do
+  lane :release do
+    gradle(
+      task: 'bundle', 
+      build_type: 'Release', 
+      project_dir: 'android/',
+      properties: {
+        "android.injected.signing.store.file" => "#{Dir.pwd}/../assets/android/release.keystore",
+        "android.injected.signing.store.password" => "",
+        "android.injected.signing.key.alias" => "",
+        "android.injected.signing.key.password" => "",
+      }
+    )
+
+    firebase_app_distribution(
+      app: "1:624376503200:android:6062d7bb846d86486162c5",
+      groups: "Interno",
+      android_artifact_type: "AAB"
+    )
+
+    upload_to_play_store(
+      track: "production", 
+      release_status: "draft",
+      package_name: "br.app.tracers",
+      json_key: "~/.ssh/tracers-fastlane-key.json",
+      skip_upload_apk: true
+    )
+  end
+
+  lane :releaseAlpha do
+    gradle(
+      task: 'bundle', 
+      build_type: 'Release', 
+      project_dir: 'android/',
+      properties: {
+        "android.injected.signing.store.file" => "#{Dir.pwd}/../assets/android/release.keystore",
+        "android.injected.signing.store.password" => "",
+        "android.injected.signing.key.alias" => "",
+        "android.injected.signing.key.password" => "",
+      }
+    )
+
+    upload_to_play_store(
+      track: "alpha", 
+      package_name: "br.app.tracers",
+      json_key: "~/.ssh/tracers-fastlane-key.json",
+      skip_upload_apk: true
+    )
+  end
+end
+
+platform :ios do
+  lane :release do
+    unlock_keychain()
+
+    update_project_team(
+      path: "./ios/Tracers.xcodeproj",
+      teamid: "CTZ882923T"
+    )
+
+    build_app(
+      workspace: "./ios/Tracers.xcworkspace", 
+      export_method: "app-store",
+      include_bitcode: false, 
+      suppress_xcode_output: false,
+      silent: false,
+      xcargs: "-allowProvisioningUpdates"
+    )
+
+    upload_to_testflight(
+      team_id: '126620121',
+      wait_processing_timeout_duration: 3600,
+    )
+  end
+end
