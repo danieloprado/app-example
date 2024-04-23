@@ -1,4 +1,4 @@
-import { LogBox, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -14,14 +14,12 @@ import { useTw } from '@/hooks/useTw';
 import Router from '@/router';
 import UpdateChecker from '@/UpdateChecker';
 
-LogBox.ignoreLogs(['`new NativeEventEmitter()`']);
-
 function App(): JSX.Element {
   const tw = useTw();
 
   return (
     <ErrorHandler>
-      <GestureHandlerRootView style={tw.style('bg-background dark:bg-dark-background', StyleSheet.absoluteFill as any)}>
+      <GestureHandlerRootView style={tw.style('bg-white dark:bg-neutral-900', StyleSheet.absoluteFill as any)}>
         <SafeAreaProvider>
           <ReactQueryConfig>
             <ConfigTheme>

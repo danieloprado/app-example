@@ -24,7 +24,7 @@ const Avatar = ({ url, style, isPro }: AvatarProps) => {
       <Image source={source} style={tw.style('h-[150px] w-[150px]', style)} />
       {isPro && (
         <Text
-          style={tw`absolute bottom-0 w-[150px] bg-primary p-1 text-center text-[12px] font-bold uppercase text-onPrimary dark:bg-dark-primary dark:text-dark-onPrimary`}
+          style={tw`text-onPrimary dark:text-dark-onPrimary absolute bottom-0 w-[150px] bg-primary p-1 text-center text-[12px] font-bold uppercase dark:bg-primary`}
         >
           Pro
         </Text>

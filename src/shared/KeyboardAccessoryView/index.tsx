@@ -53,7 +53,7 @@ const KeyboardAccessoryView = memo(({ style, children }: KeyboardAccessoryViewPr
   if (IS_ANDROID) {
     return (
       <View
-        style={tw`border-t-[1px] border-outlineVariant bg-elevation-level2 dark:border-dark-outlineVariant dark:bg-dark-elevation-level2`}
+        style={tw`border-outlineVariant bg-elevation-level2 dark:border-dark-outlineVariant dark:bg-dark-elevation-level2 border-t-[1px]`}
       >
         <View style={tw.style('gap-3 p-3', style as any)}>{children}</View>
       </View>
@@ -65,7 +65,7 @@ const KeyboardAccessoryView = memo(({ style, children }: KeyboardAccessoryViewPr
       <View style={{ minHeight: accessoryHeight + keyboardHeight }}>
         <View
           style={tw.style(
-            'absolute left-0 right-0 border-t-[1px] border-outlineVariant bg-elevation-level2 dark:border-dark-outlineVariant dark:bg-dark-elevation-level2',
+            'border-outlineVariant bg-elevation-level2 dark:border-dark-outlineVariant dark:bg-dark-elevation-level2 absolute left-0 right-0 border-t-[1px]',
             { bottom: keyboardHeight, minHeight: accessoryHeight }
           )}
         >

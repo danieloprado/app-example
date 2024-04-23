@@ -36,10 +36,7 @@ const AuthLoginScreen = () => {
     <ImageBackground source={background} style={tw`flex-1 justify-end`}>
       <AppStatusBar />
 
-      <Content
-        style={tw`mt-[50%] flex-1 rounded-t-3xl bg-background shadow-xl dark:bg-dark-background`}
-        disableSafeArea
-      >
+      <Content style={tw`mt-[50%] flex-1 rounded-t-3xl bg-white shadow-xl dark:bg-neutral-900`} disableSafeArea>
         <SafeAreaView>
           <ImageThemed lightSource={lightLogo} darkSource={darkLogo} style={tw`mb-6 h-40 w-full`} />
 

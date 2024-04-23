@@ -1,5 +1,3 @@
-import './locale';
-
 import { useCallback } from 'react';
 import {
   useForm as useFormHook,

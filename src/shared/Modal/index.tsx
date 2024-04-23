@@ -47,9 +47,9 @@ const AppModal = memo(
           <MotiView
             state={animation}
             style={tw.style({
-              'mx-5 overflow-hidden rounded-xl bg-background dark:bg-dark-background': disableFullscreen ?? false,
-              'flex-1 bg-background dark:bg-dark-background': !disableFullscreen,
-              'bg-dark-background': paperTheme.dark
+              'dark:bg-dark mx-5 overflow-hidden rounded-xl bg-white': disableFullscreen ?? false,
+              'dark:bg-dark flex-1 bg-white': !disableFullscreen,
+              'bg-dark': paperTheme.dark
             })}
             transition={{ type: 'timing', duration: 300 }}
           >

@@ -1,12 +1,11 @@
 import { memo, useCallback, useEffect } from 'react';
 import { InteractionManager } from 'react-native';
 
+import usePromiseEffect from '@eduzz/ui-hooks-promises/usePromiseEffect';
 import { useNetInfo } from '@react-native-community/netinfo';
 import messaging from '@react-native-firebase/messaging';
 import { useNavigation } from '@react-navigation/native';
 import * as Notifications from 'expo-notifications';
-
-import usePromiseEffect from '@eduzz/ui-hooks-promises/usePromiseEffect';
 
 import { refreshSession } from '@/api';
 import useLogout from '@/hooks/useLogout';
