@@ -46,7 +46,7 @@ pre_install do |installer|
   end
 end
     `,
-    anchor: /target 'Tracers' do/,
+    anchor: /target 'AppExample' do/,
     offset: 0,
     comment: '#'
   }).contents;

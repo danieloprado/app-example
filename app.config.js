@@ -76,7 +76,7 @@ export default ({ config }) => ({
     '@react-native-firebase/app',
     '@react-native-firebase/messaging',
     '@react-native-firebase/crashlytics',
-    ['@sentry/react-native/expo', { organization: 'appExample', project: 'appExample-app', authToken: '' }],
+    ['@sentry/react-native/expo', { organization: 'appExample', project: 'appExample-app' }],
     'expo-notifications',
     ['expo-screen-orientation', { initialOrientation: 'PORTRAIT' }],
     ['expo-build-properties', { ios: { useFrameworks: 'static' } }],
