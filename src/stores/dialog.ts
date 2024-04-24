@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { combine } from 'zustand/middleware';
 
-import { SupportedIcons } from '@/shared/Icon';
+import { SupportedIcons } from '@/modules/Shared/components/Icon';
 
 export interface DialogState {
   visible: boolean;

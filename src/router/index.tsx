@@ -7,17 +7,15 @@ import { NativeStackNavigationOptions, createNativeStackNavigator } from '@react
 import * as SplashScreen from 'expo-splash-screen';
 
 import { IS_ANDROID } from '@/envs';
-import AuthLoginScreen from '@/screens/Auth/Login';
+import AuthRouter from '@/modules/Auth/router';
+import HomeRouter, { HomeRouterParams } from '@/modules/Dashboard/router';
 import useAuthStore from '@/stores/auth';
 import useNavigationStore from '@/stores/navigation';
 
-import HomeTabs, { HomeTabsParams } from './HomeTabs';
-
 export type RootStackParams = {
   Home: undefined;
-  AuthLogin: undefined;
-  AuthRegister: undefined;
-} & HomeTabsParams;
+  Auth: undefined;
+} & HomeRouterParams;
 
 export type AppRoutes = keyof RootStackParams;
 export type AppRouteParams<T extends AppRoutes> = RootStackParams[T];
@@ -97,13 +95,13 @@ const Router = ({ children }: { children?: ReactNode }) => {
         <Stack.Navigator initialRouteName='Home' screenOptions={screenOptions}>
           {isAuthenticated && (
             <>
-              <Stack.Screen name='Home' component={HomeTabs} />
+              <Stack.Screen name='Home' component={HomeRouter} />
             </>
           )}
 
           {!isAuthenticated && (
             <>
-              <Stack.Screen name='AuthLogin' component={AuthLoginScreen} />
+              <Stack.Screen name='Auth' component={AuthRouter} />
             </>
           )}
         </Stack.Navigator>

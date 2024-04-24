@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { combine, persist } from 'zustand/middleware';
 
-import { decodeToken } from '@/utils/jwt';
+import { decodeToken } from '@/modules/Shared/utils/jwt';
 
 import { zustandStorage } from './storage';
 

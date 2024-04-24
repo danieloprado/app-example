@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 
-import { useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { post } from '@/api';
@@ -10,7 +9,6 @@ import useAuthStore from '@/stores/auth';
 
 export default function useLogout() {
   const queryClient = useQueryClient();
-  const navigation = useNavigation();
   const authClear = useAuthStore(store => store.clear);
 
   const logoutMutation = useMutation({
@@ -19,7 +17,6 @@ export default function useLogout() {
     onSuccess: () => {
       authClear();
       queryClient.clear();
-      navigation.reset({ index: 0, routes: [{ name: 'AuthLogin' }] });
     }
   });
 

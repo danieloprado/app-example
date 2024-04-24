@@ -2,21 +2,20 @@ import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Analytics from '@/configs/Analytics';
-import ErrorHandler from '@/configs/ErrorHandler';
-import KeepWake from '@/configs/KeepAwake';
-import NotificationsConfig from '@/configs/Notifications';
-import ReactQueryConfig from '@/configs/ReactQuery';
-import ConfigTheme from '@/configs/Theme';
-import ToastConfig from '@/configs/Toast';
-import UpdateChecker from '@/configs/UpdateChecker';
 import { IS_DEV } from '@/envs';
-import { useTw } from '@/hooks/useTw';
+import Analytics from '@/modules/Shared/configs/Analytics';
+import ErrorHandler from '@/modules/Shared/configs/ErrorHandler';
+import KeepWake from '@/modules/Shared/configs/KeepAwake';
+import NotificationsConfig from '@/modules/Shared/configs/Notifications';
+import ReactQueryConfig from '@/modules/Shared/configs/ReactQuery';
+import ConfigTheme from '@/modules/Shared/configs/Theme';
+import ToastConfig from '@/modules/Shared/configs/Toast';
+import UpdateChecker from '@/modules/Shared/configs/UpdateChecker';
 import Router from '@/router';
 
-function App(): JSX.Element {
-  const tw = useTw();
+import { tw } from './tailwind';
 
+function App(): JSX.Element {
   return (
     <ErrorHandler>
       <GestureHandlerRootView style={tw.style('bg-white dark:bg-neutral-900', StyleSheet.absoluteFill as any)}>

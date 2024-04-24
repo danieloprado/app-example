@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { combine, persist } from 'zustand/middleware';
 
-import { UseNotificationReceivedHandler } from '@/configs/Notifications/types';
+import { UseNotificationReceivedHandler } from '@/modules/Shared/configs/Notifications/types';
 
 import { zustandStorage } from './storage';
 

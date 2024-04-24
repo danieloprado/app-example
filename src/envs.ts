@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 
 import * as Device from 'expo-device';
 
-import slugify from '@/utils/slugify';
+import slugify from '@/modules/Shared/utils/slugify';
 
 const deviceName = slugify(Device.deviceName ?? 'unknown');
 const modelName = slugify(Device.modelName ?? 'unknown');

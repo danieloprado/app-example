@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 
 import ApiError from '@/errors/apiError';
-import type { AuthRefreshRequest, AuthRefreshResponse } from '@/schemas/auth/refresh';
-import { decodeToken } from '@/utils/jwt';
+import { decodeToken } from '@/modules/Shared/utils/jwt';
 
 import { formatApiResponse } from './formatter';
+import { AuthRefreshRequest, AuthRefreshResponse } from './schemas/refresh';
 
 interface ApiClientRequestOptions {
   method: Method;

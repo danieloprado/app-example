@@ -4,7 +4,7 @@ import * as Sentry from '@sentry/react-native';
 
 import { IS_DEV, SENTRY_DSN } from '@/envs';
 import { Toast } from '@/feedback';
-import slugify from '@/utils/slugify';
+import slugify from '@/modules/Shared/utils/slugify';
 
 import useAuthStore from './stores/auth';
 import useNavigationStore from './stores/navigation';

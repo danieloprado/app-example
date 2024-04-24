@@ -1,7 +1,7 @@
 import { InteractionManager } from 'react-native';
 import ToastNative from 'react-native-toast-message';
 
-import errorFormatter from '@/formatters/error';
+import errorFormatter from '@/modules/Shared/formatters/error';
 import useDialogStore, { DialogState } from '@/stores/dialog';
 
 export const Dialog = {
