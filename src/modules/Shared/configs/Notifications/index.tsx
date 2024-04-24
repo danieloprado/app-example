@@ -8,8 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import * as Notifications from 'expo-notifications';
 
 import { refreshSession } from '@/api';
-import useLogout from '@/hooks/useLogout';
 import { logError, logEvent } from '@/log';
+import useLogout from '@/modules/Auth/hooks/useLogout';
 import useAuthStore from '@/stores/auth';
 import useNotificationStore from '@/stores/notification';
 
