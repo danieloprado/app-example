@@ -1,8 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 
-import ApiError from '@/errors/apiError';
 import { decodeToken } from '@/modules/Shared/utils/jwt';
 
+import ApiError from './error';
 import { formatApiResponse } from './formatter';
 import { AuthRefreshRequest, AuthRefreshResponse } from './schemas/refresh';
 
