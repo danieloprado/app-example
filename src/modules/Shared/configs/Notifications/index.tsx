@@ -1,7 +1,6 @@
 import { memo, useCallback, useEffect } from 'react';
 import { InteractionManager } from 'react-native';
 
-import usePromiseEffect from '@eduzz/ui-hooks-promises/usePromiseEffect';
 import { useNetInfo } from '@react-native-community/netinfo';
 import messaging from '@react-native-firebase/messaging';
 import { useNavigation } from '@react-navigation/native';
@@ -64,8 +63,9 @@ const NotificationsConfig = () => {
     [currentUser?.id]
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  usePromiseEffect(async () => {
+  useEffect(() => {
+    if (!isInternetReachable || !isAuthenticated) return;
+
     const tryGet = async (retry: number = 0) => {
       try {
         const token = await messaging().getToken();
@@ -78,28 +78,24 @@ const NotificationsConfig = () => {
       }
     };
 
-    try {
-      if (!isInternetReachable || !isAuthenticated) return;
+    Notifications.getPermissionsAsync()
+      .then(async permission => {
+        if (!permission.granted && permission.canAskAgain) {
+          await InteractionManager.runAfterInteractions();
+          permission = await Notifications.requestPermissionsAsync();
+        }
 
-      let permission = await Notifications.getPermissionsAsync();
-
-      if (!permission.granted && permission.canAskAgain) {
-        await InteractionManager.runAfterInteractions();
-        permission = await Notifications.requestPermissionsAsync();
-      }
-
-      if (!permission.granted) return;
-      await tryGet();
-    } catch (err) {
-      logError(err, { reporter: 'NotificationsConfig', action: 'tryGet' });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInternetReachable]);
+        if (!permission.granted) return;
+        return tryGet();
+      })
+      .catch(err => logError(err, { reporter: 'NotificationsConfig', action: 'tryGet' }));
+  }, [isAuthenticated, isInternetReachable]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  usePromiseEffect(async () => {
-    const notification = await messaging().getInitialNotification();
-    onNotificationOpened(notification?.data as NotificationPayload);
+  useEffect(() => {
+    messaging()
+      .getInitialNotification()
+      .then(notification => onNotificationOpened(notification?.data as NotificationPayload));
   }, [onNotificationOpened]);
 
   useEffect(() => {

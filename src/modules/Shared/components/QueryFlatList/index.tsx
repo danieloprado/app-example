@@ -2,7 +2,7 @@ import { ComponentType, useCallback, useEffect, useRef } from 'react';
 import { FlatList, FlatListProps, InteractionManager, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 
-import { UseQueryPaginatedResult } from '@eduzz/ui-hooks-query/useQueryPaginated';
+import { UseQueryPaginatedResult } from '@/hooks/useQueryPaginated';
 
 import { PaginationRequest } from '../../schemas/pagination';
 import Empty from '../Empty';
@@ -14,7 +14,7 @@ interface QueryFlatListProps<T, TI>
     FlatListProps<TI>,
     'ref' | 'data' | 'refreshControl' | 'onEndReached' | 'ListFooterComponent' | 'keyExtractor' | 'renderItem'
   > {
-  query: UseQueryPaginatedResult<PaginationRequest<T, any, any>, TI>;
+  query: UseQueryPaginatedResult<PaginationRequest, TI>;
   ItemComponent: ComponentType<{ data: T; index: number }>;
 }
 
@@ -32,29 +32,27 @@ function QueryFlatList<T, TI extends { id: number | string }>({
   );
 
   const onEndReached = useCallback(() => {
-    if (!query.infinityHasMore || query.isFetching || query.isLoading || query.error) return;
-    query.mergeParams(params => ({ page: (params.page ?? 0) + 1 }));
+    if (!query.hasNextPage || query.isFetching || query.isLoading || query.error) return;
+    query.fetchNextPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.infinityHasMore, query.isFetching, query.isLoading, query.error, query.mergeParams]);
+  }, [query.hasNextPage, query.isFetching, query.isLoading, query.error, query.mergeParams]);
 
   const renderFooter = useCallback(() => {
-    if (!query.infinityHasMore || !query.isSuccess) {
+    if (!query.hasNextPage || !query.isSuccess) {
       return null;
     }
 
     return <ActivityIndicator size={40} style={styles.loader} />;
-  }, [query.infinityHasMore, query.isSuccess]);
-
-  const isFirstPage = query.params.page === 1;
+  }, [query.hasNextPage, query.isSuccess]);
 
   useEffect(() => {
-    if (!isFirstPage || !query.data?.result.length) return;
+    if (!query.isLoading) return;
     const interaction = InteractionManager.runAfterInteractions(() =>
       flatListRef.current?.scrollToOffset({ offset: 0, animated: true })
     );
     return () => interaction.cancel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFirstPage]);
+  }, [query.isLoading]);
 
   return (
     <FlatList
@@ -63,12 +61,7 @@ function QueryFlatList<T, TI extends { id: number | string }>({
       {...flatListProps}
       ref={flatListRef}
       data={query.isError ? [] : query.data?.result}
-      refreshControl={
-        <AppRefreshControl
-          refreshing={isFirstPage && (query.isLoading || query.isFetching)}
-          onRefresh={query.refresh}
-        />
-      }
+      refreshControl={<AppRefreshControl refreshing={query.isLoading} onRefresh={query.refetch} />}
       onEndReached={onEndReached}
       ListFooterComponent={renderFooter}
       keyExtractor={keyExtractor}
@@ -76,7 +69,7 @@ function QueryFlatList<T, TI extends { id: number | string }>({
       ListEmptyComponent={
         <>
           {!query.isLoading && !query.isError && !query.data?.result.length && <Empty />}
-          {!query.isLoading && query.isError && <ErrorMessage error={query.error} onPress={query.refresh} />}
+          {!query.isLoading && query.isError && <ErrorMessage error={query.error} onPress={query.refetch} />}
         </>
       }
     />

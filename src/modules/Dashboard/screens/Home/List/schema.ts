@@ -1,5 +1,3 @@
-import * as yup from 'yup';
-
 import { SupportedIcons } from '@/modules/Shared/components/Icon';
 import { PaginationRequest, PaginationResponse } from '@/modules/Shared/schemas/pagination';
 
@@ -9,10 +7,5 @@ export type ListResponseItem = {
   icon: SupportedIcons;
 };
 
-export interface ListRequest extends PaginationRequest<ListResponseItem, never, unknown> {}
+export interface ListRequest extends PaginationRequest {}
 export interface ListResponse extends PaginationResponse<ListResponseItem> {}
-
-export const listSchema: yup.Schema<ListRequest> = yup.object({
-  page: yup.number().min(1).required(),
-  perPage: yup.number().min(5).required()
-});

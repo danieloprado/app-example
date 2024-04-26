@@ -1,15 +1,12 @@
 export const paginationSort = ['asc', 'desc'] as const;
 export type PaginationSortType = (typeof paginationSort)[number];
 
-export interface PaginationRequest<M, O extends keyof M | `${string}.${string}` = never, F = never> {
+export interface PaginationRequest {
   page: number;
-  perPage: number;
-  sortField?: O;
-  sortDirection?: PaginationSortType;
-  filters?: F | undefined | null;
+  pageSize: number;
 }
 
 export interface PaginationResponse<T> {
-  total?: number;
+  total: number;
   result: T[];
 }

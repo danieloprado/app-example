@@ -1,11 +1,10 @@
-import { Modal, View } from 'react-native';
+import { Modal, SafeAreaView } from 'react-native';
 
 import * as Application from 'expo-application';
 
 import useConfigStore from '@/stores/config';
 import { tw } from '@/tailwind';
 
-import AppHeader from '../../components/Header';
 import IconMessage from '../../components/IconMessage';
 import { openStore } from '../../utils/linking';
 
@@ -16,9 +15,7 @@ const UpdateChecker = () => {
 
   return (
     <Modal visible={visible} animationType='slide' statusBarTranslucent>
-      <AppHeader />
-
-      <View style={tw`flex-1 bg-white`}>
+      <SafeAreaView style={tw`flex-1 bg-white`}>
         <IconMessage
           icon='cellphone-arrow-down'
           message='Atualização'
@@ -27,7 +24,7 @@ const UpdateChecker = () => {
           buttonText='Atualizar agora'
           onPress={openStore}
         />
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 };

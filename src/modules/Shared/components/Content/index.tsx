@@ -1,4 +1,4 @@
-import { memo, ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, StyleProp, View, ViewStyle, SafeAreaView } from 'react-native';
 
 import { nanoid } from 'nanoid/non-secure';
@@ -8,7 +8,6 @@ import { tw } from '@/tailwind';
 
 import { ContentContext, ContentContextType } from './context';
 import ContentFooter from './Footer';
-import nestedComponent from '../../utils/nestedComponent';
 import AppRefreshControl from '../RefreshControl';
 
 interface IProps {
@@ -20,7 +19,7 @@ interface IProps {
   onRefresh?: () => void;
 }
 
-const ContentComponent = ({
+const Content = ({
   children,
   style,
   disableSafeArea: disableSafeAreaProp,
@@ -84,8 +83,6 @@ const ContentComponent = ({
   );
 };
 
-const Content = nestedComponent(memo(ContentComponent), {
-  Footer: ContentFooter
-});
+Content.Footer = ContentFooter;
 
 export default Content;

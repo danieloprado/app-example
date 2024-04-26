@@ -19,7 +19,7 @@ interface AppHeaderProps {
   style?: ViewStyle;
 }
 
-function AppHeader({
+const AppHeader = ({
   title,
   onClose,
   rightClose,
@@ -28,7 +28,7 @@ function AppHeader({
   style,
   transparent,
   children
-}: AppHeaderProps) {
+}: AppHeaderProps) => {
   const navigation = useNavigation();
 
   return (
@@ -49,7 +49,7 @@ function AppHeader({
       </Appbar.Header>
     </>
   );
-}
+};
 
 AppHeader.Action = Appbar.Action;
 

@@ -1,4 +1,4 @@
-import { ListRequest, ListResponse } from '@/modules/Dashboard/screens/Home/schema';
+import { ListRequest, ListResponse } from '@/modules/Dashboard/screens/Home/List/schema';
 
 const listData = new Array(100).fill('a').map(
   (_, index) =>
@@ -19,8 +19,8 @@ export const _apiMock: Record<string, (params: any) => any> = {
     };
   },
   '/dashboard/list': (params: ListRequest): ListResponse => {
-    const start = (params.page - 1) * params.perPage;
-    const end = start + params.perPage;
+    const start = (params.page - 1) * params.pageSize;
+    const end = start + params.pageSize;
 
     return {
       total: 100,
