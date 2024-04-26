@@ -18,7 +18,7 @@ const UpdateChecker = () => {
     <Modal visible={visible} animationType='slide' statusBarTranslucent>
       <AppHeader />
 
-      <View style={tw`flex-1 bg-white dark:bg-neutral-900`}>
+      <View style={tw`flex-1 bg-white`}>
         <IconMessage
           icon='cellphone-arrow-down'
           message='Atualização'

@@ -1,20 +1,8 @@
-import { memo, ReactNode, useCallback, useMemo, useState } from 'react';
-import {
-  Image,
-  KeyboardAvoidingView,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
-  StyleProp,
-  View,
-  ViewStyle,
-  SafeAreaView
-} from 'react-native';
+import { memo, ReactNode, useMemo, useState } from 'react';
+import { KeyboardAvoidingView, ScrollView, StyleProp, View, ViewStyle, SafeAreaView } from 'react-native';
 
-import { MotiView } from 'moti';
 import { nanoid } from 'nanoid/non-secure';
 
-import background from '@/assets/background.png';
 import { IS_ANDROID } from '@/envs';
 import { tw } from '@/tailwind';
 
@@ -30,7 +18,6 @@ interface IProps {
   disablePadding?: boolean;
   refreshing?: boolean;
   onRefresh?: () => void;
-  headerBackground?: boolean;
 }
 
 const ContentComponent = ({
@@ -38,17 +25,10 @@ const ContentComponent = ({
   style,
   disableSafeArea: disableSafeAreaProp,
   disablePadding,
-  headerBackground,
   refreshing,
   onRefresh
 }: IProps) => {
-  const [hideBackground, setHideBackground] = useState(false);
   const [footers, setFooters] = useState<{ id: string; children: ReactNode }[]>([]);
-
-  const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setHideBackground(event.nativeEvent.contentOffset.y > 15);
-  }, []);
-
   const disableSafeArea = disableSafeAreaProp ?? footers.length > 0;
 
   const contextValue = useMemo<ContentContextType>(
@@ -75,7 +55,6 @@ const ContentComponent = ({
       bounces={false}
       showsVerticalScrollIndicator={false}
       contentInsetAdjustmentBehavior='never'
-      onScroll={onScroll}
       scrollEventThrottle={16}
       keyboardShouldPersistTaps='handled'
       refreshControl={
@@ -96,18 +75,6 @@ const ContentComponent = ({
 
   return (
     <>
-      {headerBackground && (
-        <MotiView
-          pointerEvents='none'
-          from={{ height: !hideBackground ? 0 : 200 }}
-          animate={{ height: hideBackground ? 0 : 200 }}
-          transition={{ type: 'timing', duration: 300 }}
-          style={tw`absolute top-0 z-0 w-full`}
-        >
-          <Image style={tw`h-full w-full`} source={background} />
-        </MotiView>
-      )}
-
       {ResultView}
 
       {footers.map(({ id, children }) => (

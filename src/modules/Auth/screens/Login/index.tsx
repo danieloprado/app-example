@@ -1,10 +1,11 @@
-import { Image, ImageBackground, SafeAreaView } from 'react-native';
+import { Image, ImageBackground } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useFocusEffect } from '@react-navigation/native';
 
 import background from '@/assets/background.png';
-import logo from '@/assets/logo-icon.png';
+import logo from '@/assets/logo.png';
 import Content from '@/modules/Shared/components/Content';
 import Form from '@/modules/Shared/components/Forms/Form';
 import PasswordField from '@/modules/Shared/components/Forms/PasswordField';
@@ -19,6 +20,7 @@ import useLoginMutation from './useLoginMutation';
 
 const LoginScreen = () => {
   const authClear = useAuthStore(store => store.clear);
+  const { top } = useSafeAreaInsets();
 
   const form = useForm({
     validationSchema: authLoginSchema
@@ -28,32 +30,31 @@ const LoginScreen = () => {
   useFocusEffect(authClear);
 
   return (
-    <ImageBackground source={background} style={tw`flex-1 justify-end`}>
+    <ImageBackground source={background} style={tw`flex-1 pt-[${top}px]`}>
       <AppStatusBar />
 
-      <Content style={tw`mt-[50%] flex-1 rounded-t-3xl bg-white shadow-xl dark:bg-neutral-900`} disableSafeArea>
-        <SafeAreaView>
-          <Image source={logo} resizeMode='contain' style={tw`mb-6 h-40 w-full`} />
+      <Content>
+        <Image source={logo} resizeMode='contain' style={tw`mb-6 h-20 w-full overflow-hidden rounded-md`} />
 
-          <Form context={form} onSubmit={mutation.mutateAsync}>
-            <TextField<AuthLoginRequest>
-              tabIndex={1}
-              keyboardType='email-address'
-              autoCapitalize='none'
-              name='email'
-              label='Email'
-              left={<TextInput.Icon icon='email-outline' />}
-            />
-            <PasswordField<AuthLoginRequest>
-              tabIndex={2}
-              name='password'
-              label='Senha'
-              left={<TextInput.Icon icon='lock-outline' />}
-            />
+        <Form context={form} onSubmit={mutation.mutateAsync}>
+          <TextField<AuthLoginRequest>
+            tabIndex={1}
+            keyboardType='email-address'
+            autoCapitalize='none'
+            name='email'
+            label='Email'
+            left={<TextInput.Icon icon='email-outline' />}
+          />
 
-            <Form.Submit>Entrar</Form.Submit>
-          </Form>
-        </SafeAreaView>
+          <PasswordField<AuthLoginRequest>
+            tabIndex={2}
+            name='password'
+            label='Senha'
+            left={<TextInput.Icon icon='lock-outline' />}
+          />
+
+          <Form.Submit>Entrar</Form.Submit>
+        </Form>
       </Content>
     </ImageBackground>
   );

@@ -73,7 +73,7 @@ const Component = forwardRef<NativeTextInput, TextFieldProps>(
     return (
       <View style={containerStyle}>
         <TextInput
-          mode='outlined'
+          mode='flat'
           autoCapitalize={props.keyboardType === 'email-address' ? 'none' : undefined}
           {...props}
           style={[styles.fixEllipsis, multiline && styles.multiline]}

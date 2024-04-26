@@ -13,12 +13,10 @@ import ToastConfig from '@/modules/Shared/configs/Toast';
 import UpdateChecker from '@/modules/Shared/configs/UpdateChecker';
 import Router from '@/router';
 
-import { tw } from './tailwind';
-
 function App(): JSX.Element {
   return (
     <ErrorHandler>
-      <GestureHandlerRootView style={tw.style('bg-white dark:bg-neutral-900', StyleSheet.absoluteFill as any)}>
+      <GestureHandlerRootView style={StyleSheet.absoluteFill}>
         <SafeAreaProvider>
           <ReactQueryConfig>
             <ConfigTheme>

@@ -3,7 +3,7 @@ import { combine, persist } from 'zustand/middleware';
 
 import { decodeToken } from '@/modules/Shared/utils/jwt';
 
-import { zustandStorage } from './storage';
+import { jsonStorage } from './storage';
 
 export type CurrentUser = { id: number; name: string; email: string };
 
@@ -25,7 +25,7 @@ const useAuthStore = create(
     })),
     {
       name: 'auth-storage',
-      storage: zustandStorage,
+      storage: jsonStorage,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       partialize: ({ currentUser, ...state }) => state,
       merge: (state: any, currentState) => {

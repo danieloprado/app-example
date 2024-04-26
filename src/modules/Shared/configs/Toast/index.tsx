@@ -19,8 +19,7 @@ const CustomToast = ({
     <BaseToast
       {...props}
       style={tw.style('w-11/12  border-l-0 opacity-90', {
-        'bg-dark-elevation-level5': !error,
-        'bg-error': error ?? false,
+        'bg-red-500/90': error ?? false,
         'h-[100px] items-start py-5': big ?? false
       })}
       text1Style={tw`text-xs text-white`}

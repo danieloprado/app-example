@@ -8,20 +8,15 @@ const deviceName = slugify(Device.deviceName ?? 'unknown');
 const modelName = slugify(Device.modelName ?? 'unknown');
 
 export const IS_DEV = __DEV__;
+export const ENV = process.env.EXPO_PUBLIC_ENV;
 
+export const API_ENDPOINT = process.env.EXPO_PUBLIC_API_ENDPOINT ?? '';
+export const SENTRY_DSN = process.env.EXPO_PUBLIC_SENTRY_DSN;
+
+export const IS_ANDROID = Platform.OS === 'android';
 export const IS_IOS = Platform.OS === 'ios';
 export const IS_OLD_IPHONE = ['iPhone SE', 'iPhone 6', 'iPhone 7', 'iPhone 8'].some(
   model => deviceName.includes(slugify(model)) || modelName.includes(slugify(model))
 );
-export const IS_ANDROID = Platform.OS === 'android';
-
-export const APIENDPOINT = IS_DEV ? 'http://192.168.1.84:5000' : 'https://web.tracers.app.br/api';
-export const API_IS_PROD = APIENDPOINT === 'https://web.tracers.app.br/api';
-export const CONTENT_URL = `${APIENDPOINT}/content`;
-
-export const TERMS_URL = 'https://web.tracers.app.br/p/termos-de-uso';
-export const PRIVACY_URL = 'https://web.tracers.app.br/p/privacidade';
-
-export const SENTRY_DSN = IS_DEV ? undefined : '';
 
 export const STATUSBAR_ANDROID_BLACK = IS_ANDROID && (Device.platformApiLevel ?? 0) < 23;

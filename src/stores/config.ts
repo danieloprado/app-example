@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { combine, persist } from 'zustand/middleware';
 
-import { zustandStorage } from './storage';
+import { jsonStorage } from './storage';
 
 const useConfigStore = create(
   persist(
@@ -11,7 +11,7 @@ const useConfigStore = create(
       },
       () => ({})
     ),
-    { name: 'config-storage', storage: zustandStorage }
+    { name: 'config-storage', storage: jsonStorage }
   )
 );
 

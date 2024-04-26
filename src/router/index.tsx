@@ -2,20 +2,27 @@ import { ReactNode, useCallback, useMemo, useRef } from 'react';
 import { InteractionManager } from 'react-native';
 import { Portal, useTheme } from 'react-native-paper';
 
-import { NavigationContainer, NavigationContainerRef, RouteProp, Theme } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigationContainerRef,
+  RouteProp,
+  Theme,
+  NavigatorScreenParams
+} from '@react-navigation/native';
 import { NativeStackNavigationOptions, createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { IS_ANDROID } from '@/envs';
-import AuthRouter from '@/modules/Auth/router';
-import HomeRouter, { HomeRouterParams } from '@/modules/Dashboard/router';
+import AuthRouter, { AuthRouterParams } from '@/modules/Auth/router';
+import DashboardRouter, { DashboardRouterParams } from '@/modules/Dashboard/router';
 import useAuthStore from '@/stores/auth';
 import useNavigationStore from '@/stores/navigation';
 
 export type RootStackParams = {
-  Home: undefined;
-  Auth: undefined;
-} & HomeRouterParams;
+  Dashboard: NavigatorScreenParams<DashboardRouterParams>;
+  Auth: NavigatorScreenParams<AuthRouterParams>;
+} & DashboardRouterParams &
+  AuthRouterParams;
 
 export type AppRoutes = keyof RootStackParams;
 export type AppRouteParams<T extends AppRoutes> = RootStackParams[T];
@@ -92,10 +99,10 @@ const Router = ({ children }: { children?: ReactNode }) => {
       <Portal.Host>
         {children}
 
-        <Stack.Navigator initialRouteName='Home' screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName='Dashboard' screenOptions={screenOptions}>
           {isAuthenticated && (
             <>
-              <Stack.Screen name='Home' component={HomeRouter} />
+              <Stack.Screen name='Dashboard' component={DashboardRouter} />
             </>
           )}
 

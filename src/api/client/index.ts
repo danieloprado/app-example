@@ -1,10 +1,14 @@
 import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 
+import { IS_DEV } from '@/envs';
 import { decodeToken } from '@/modules/Shared/utils/jwt';
+import useAuthStore from '@/stores/auth';
+import useNotificationStore from '@/stores/notification';
 
+import { _apiMock } from './_mock';
 import ApiError from './error';
 import { formatApiResponse } from './formatter';
-import { AuthRefreshRequest, AuthRefreshResponse } from './schemas/refresh';
+import { AuthRefreshRequest, AuthRefreshResponse } from '../schemas/refresh';
 
 interface ApiClientRequestOptions {
   method: Method;
@@ -17,21 +21,18 @@ interface ApiClientRequestOptions {
 export class ApiClient {
   private refreshTokenInProgress: Promise<string> | null = null;
 
-  constructor(
-    private readonly endpoint: string,
-    private readonly store: () => {
-      accessToken?: string;
-      refreshToken?: string;
-      setAccessToken(token: string): void;
-      clear(): void;
-    },
-    private readonly notificationStore?: () => {
-      token: string | null;
-    }
-  ) {}
+  constructor(private readonly endpoint: string) {}
 
   public async request<T = any>({ method, url, data, onProgress, skipToken }: ApiClientRequestOptions): Promise<T> {
     try {
+      if (IS_DEV && !this.endpoint) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(_apiMock[url]?.(data));
+          }, 1000);
+        });
+      }
+
       onProgress && onProgress(0);
       const config: AxiosRequestConfig = {
         baseURL: url.startsWith('http') ? undefined : this.endpoint,
@@ -55,15 +56,16 @@ export class ApiClient {
   }
 
   public refreshSession() {
-    const { refreshToken } = this.store();
-
     if (!this.refreshTokenInProgress) {
       const requestRefresh = async (retry: number = 0): Promise<AuthRefreshResponse> => {
         try {
           return this.request({
             method: 'POST',
             url: '/auth/refresh',
-            data: { refreshToken, notificationToken: this.notificationStore?.().token } as AuthRefreshRequest,
+            data: {
+              refreshToken: useAuthStore.getState().refreshToken,
+              notificationToken: useNotificationStore.getState().token
+            } as AuthRefreshRequest,
             skipToken: true
           });
         } catch (err: any) {
@@ -80,7 +82,7 @@ export class ApiClient {
 
       this.refreshTokenInProgress = requestRefresh()
         .then(({ accessToken }) => {
-          this.store().setAccessToken(accessToken);
+          useAuthStore.getState().setAccessToken(accessToken);
           return accessToken;
         })
         .finally(() => {
@@ -92,7 +94,7 @@ export class ApiClient {
   }
 
   public getAuthToken() {
-    const { accessToken, refreshToken } = this.store();
+    const { accessToken, refreshToken } = useAuthStore.getState();
     const validAccess = this.verifyTokenExp(accessToken);
 
     if (validAccess) return validAccess;
@@ -106,7 +108,7 @@ export class ApiClient {
       throw err;
     }
 
-    const { accessToken, refreshToken, clear } = this.store();
+    const { accessToken, refreshToken, clear } = useAuthStore.getState();
 
     if (err.response?.status === 401 && (accessToken || refreshToken)) {
       clear();
@@ -138,6 +140,8 @@ export class ApiClient {
       if (!token) return undefined;
 
       const exp = decodeToken(token).exp;
+      if (!exp) return token;
+
       const isExpired = exp < Date.now() / 1000;
 
       if (isExpired) return undefined;

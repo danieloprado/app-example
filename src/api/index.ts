@@ -1,10 +1,8 @@
-import { APIENDPOINT, IS_DEV } from '@/envs';
-import useAuthStore from '@/stores/auth';
-import useNotificationStore from '@/stores/notification';
+import { API_ENDPOINT } from '@/envs';
 
 import { ApiClient } from './client';
 
-const client = new ApiClient(APIENDPOINT, useAuthStore.getState, useNotificationStore.getState);
+const client = new ApiClient(API_ENDPOINT);
 
 export async function get<T = any>(url: string, params?: any): Promise<T> {
   return client.request<T>({ method: 'GET', url, data: params });
@@ -26,23 +24,10 @@ export async function refreshSession() {
   return client.refreshSession();
 }
 
-export async function getAuthToken() {
-  return client.getAuthToken();
-}
-
 export async function upload<T = any>(
   url: string,
   data: FormData,
   onProgress?: (progress: number) => void
 ): Promise<T> {
   return client.request<T>({ method: 'POST', url, data, onProgress });
-}
-export async function devSleep(timer = 3000) {
-  if (!IS_DEV) return;
-
-  return new Promise<void>(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, timer);
-  });
 }

@@ -2,9 +2,9 @@ import { MMKV } from 'react-native-mmkv';
 
 import { createJSONStorage } from 'zustand/middleware';
 
-export const storage = new MMKV({ id: 'tracers-app' });
+const storage = new MMKV({ id: 'tracers-app' });
 
-export const zustandStorage = createJSONStorage(() => ({
+export const jsonStorage = createJSONStorage(() => ({
   setItem: (name, value) => {
     return storage.set(name, value);
   },

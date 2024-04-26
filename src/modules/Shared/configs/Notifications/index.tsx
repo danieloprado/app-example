@@ -9,7 +9,6 @@ import * as Notifications from 'expo-notifications';
 
 import { refreshSession } from '@/api';
 import { logError, logEvent } from '@/log';
-import useLogout from '@/modules/Auth/hooks/useLogout';
 import useAuthStore from '@/stores/auth';
 import useNotificationStore from '@/stores/notification';
 
@@ -36,9 +35,7 @@ const NotificationsConfig = () => {
   const navigation = useNavigation();
   const isAuthenticated = useAuthStore(store => store.isAuthenticated());
   const currentUser = useAuthStore(store => store.currentUser);
-  const notificationToken = useNotificationStore(store => store.token);
   const receivedHandlers = useNotificationStore(store => store.receivedHandlers);
-  const { doLogout } = useLogout();
 
   const onNotificationOpened = useCallback(
     (payload?: NotificationPayload | undefined) => {
@@ -53,12 +50,6 @@ const NotificationsConfig = () => {
         return;
       }
 
-      if (payload?.logout === 'true') {
-        logEvent('notification_logout');
-        doLogout();
-        return;
-      }
-
       if (payload.navigateTo) {
         const params = JSON.parse(payload.params ?? '{}');
         InteractionManager.runAfterInteractions(() =>
@@ -70,7 +61,7 @@ const NotificationsConfig = () => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentUser?.id, doLogout]
+    [currentUser?.id]
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,12 +169,6 @@ const NotificationsConfig = () => {
 
     return () => handler.remove();
   }, [onNotificationOpened]);
-
-  useEffect(() => {
-    if (!notificationToken) return;
-    if (!useAuthStore.getState().isAuthenticated()) return;
-    refreshSession();
-  }, [notificationToken]);
 
   return null;
 };

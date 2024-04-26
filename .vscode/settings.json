@@ -1,0 +1,46 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.tmp": true,
+    "**/vendor/**": true,
+    "**/.idea/**": true,
+    ".expo": true,
+    ".bundle": true,
+    "tsconfig.tsbuildinfo": true,
+    "*.ipa": true,
+    "*.dSYM.zip": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.rulers": [
+    {
+      "column": 120,
+      "color": "#fd3e3e78"
+    }
+  ],
+  "tailwindCSS.classAttributes": [
+    "className",
+    "style"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+      "tw`([^`]*)",
+      ["tw.style\\(([^)]*)\\)", "'([^']*)'"]
+  ],
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}
