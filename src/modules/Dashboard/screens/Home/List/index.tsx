@@ -1,7 +1,7 @@
-import { get } from '@/api';
-import useQueryPaginated from '@/hooks/useQueryPaginated';
-import AppHeader from '@/modules/Shared/components/Header';
-import QueryFlatList from '@/modules/Shared/components/QueryFlatList';
+import { get } from '@app/shared/api';
+import AppHeader from '@app/shared/components/Header';
+import QueryFlatList from '@app/shared/components/QueryFlatList';
+import useQueryPaginated from '@app/shared/hooks/useQueryPaginated';
 
 import ListItem from './ListItem';
 import { ListRequest, ListResponseItem } from './schema';

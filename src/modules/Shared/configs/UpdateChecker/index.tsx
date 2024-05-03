@@ -2,11 +2,10 @@ import { Modal, SafeAreaView } from 'react-native';
 
 import * as Application from 'expo-application';
 
+import IconMessage from '@/components/IconMessage';
 import useConfigStore from '@/stores/config';
 import { tw } from '@/tailwind';
-
-import IconMessage from '../../components/IconMessage';
-import { openStore } from '../../utils/linking';
+import { openStore } from '@/utils/linking';
 
 const buildNumber = Number(Application.nativeBuildVersion);
 

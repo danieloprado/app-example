@@ -2,16 +2,16 @@ import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { IS_DEV } from '@/envs';
-import Analytics from '@/modules/Shared/configs/Analytics';
-import ErrorHandler from '@/modules/Shared/configs/ErrorHandler';
-import KeepWake from '@/modules/Shared/configs/KeepAwake';
-import NotificationsConfig from '@/modules/Shared/configs/Notifications';
-import ReactQueryConfig from '@/modules/Shared/configs/ReactQuery';
-import ConfigTheme from '@/modules/Shared/configs/Theme';
-import ToastConfig from '@/modules/Shared/configs/Toast';
-import UpdateChecker from '@/modules/Shared/configs/UpdateChecker';
-import Router from '@/router';
+import Router from '@app/router';
+import Analytics from '@app/shared/configs/Analytics';
+import ErrorHandler from '@app/shared/configs/ErrorHandler';
+import KeepWake from '@app/shared/configs/KeepAwake';
+import NotificationsConfig from '@app/shared/configs/Notifications';
+import ReactQueryConfig from '@app/shared/configs/ReactQuery';
+import ConfigTheme from '@app/shared/configs/Theme';
+import ToastConfig from '@app/shared/configs/Toast';
+import UpdateChecker from '@app/shared/configs/UpdateChecker';
+import { IS_DEV } from '@app/shared/envs';
 
 function App(): JSX.Element {
   return (

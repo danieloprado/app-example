@@ -3,7 +3,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { IconButton, Text } from 'react-native-paper';
 
 import { tw } from '@/tailwind';
-
 import Icon, { SupportedIcons } from '../Icon';
 
 interface IconMessageSmallProps {

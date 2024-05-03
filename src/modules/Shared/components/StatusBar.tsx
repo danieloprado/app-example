@@ -1,7 +1,7 @@
 import { StatusBar, StatusBarProps } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-import { STATUSBAR_ANDROID_BLACK } from '@/envs';
+import { STATUSBAR_ANDROID_BLACK } from '../envs';
 
 const AppStatusBar = ({ backgroundColor, ...props }: StatusBarProps) => {
   const theme = useTheme();

@@ -2,10 +2,9 @@
 import { useState } from 'react';
 import ToastMessage, { BaseToast, ToastConfigParams, ToastConfig as ToastConfigType } from 'react-native-toast-message';
 
+import Icon from '@/components/Icon';
 import { IS_ANDROID } from '@/envs';
 import { tw } from '@/tailwind';
-
-import Icon from '../../components/Icon';
 
 const TEXT2_PROPS = { numberOfLines: 3 };
 

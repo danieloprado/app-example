@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { FieldValues } from 'react-hook-form';
 
-import type { UseFormReturn } from '@/modules/Shared/components/Forms/useForm';
+import type { UseFormReturn } from '../useForm';
 
 export interface FormContextType<F extends FieldValues = any> {
   form?: UseFormReturn<F>;

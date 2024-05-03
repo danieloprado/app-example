@@ -2,10 +2,9 @@ import { useCallback, useMemo, useState } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { InteractionManager } from 'react-native';
 
-import type { UseFormReturn } from '@/modules/Shared/components/Forms/useForm';
-
 import FormContext from './context';
 import Submit from './Submit';
+import { UseFormReturn } from '../useForm';
 
 interface FormProps<V extends FieldValues> {
   context: UseFormReturn<V>;

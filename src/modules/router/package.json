@@ -1,0 +1,11 @@
+{
+  "name": "@app/router",
+  "private":  true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@app/auth": "*",
+    "@app/dashboard": "*",
+    "@app/shared": "*"
+  }
+}

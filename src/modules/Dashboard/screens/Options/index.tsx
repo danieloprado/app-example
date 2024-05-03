@@ -1,9 +1,9 @@
 import { Button, Text } from 'react-native-paper';
 
-import Content from '@/modules/Shared/components/Content';
-import AppHeader from '@/modules/Shared/components/Header';
-import useAuthStore from '@/stores/auth';
-import { tw } from '@/tailwind';
+import Content from '@app/shared/components/Content';
+import AppHeader from '@app/shared/components/Header';
+import useAuthStore from '@app/shared/stores/auth';
+import { tw } from '@app/shared/tailwind';
 
 const OptionsScreen = () => {
   const clear = useAuthStore(store => store.clear);

@@ -5,12 +5,11 @@ import * as MailComposer from 'expo-mail-composer';
 import { openBrowserAsync, WebBrowserPresentationStyle } from 'expo-web-browser';
 import qs from 'qs';
 
-import { IS_IOS } from '@/envs';
-import { Toast } from '@/feedback';
-import { logError } from '@/log';
-import useAuthStore from '@/stores/auth';
-
 import { getDeviceName } from './device';
+import { IS_IOS } from '../envs';
+import { Toast } from '../feedback';
+import { logError } from '../log';
+import useAuthStore from '../stores/auth';
 
 export const openUrl = async (url: string): Promise<boolean> => {
   try {

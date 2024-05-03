@@ -1,6 +1,5 @@
-import { API_ENDPOINT } from '@/envs';
-
 import { ApiClient } from './client';
+import { API_ENDPOINT } from '../envs';
 
 const client = new ApiClient(API_ENDPOINT);
 

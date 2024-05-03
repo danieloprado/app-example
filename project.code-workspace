@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "~",
+			"path": "."
+		},
+		{
+			"name": "@app/app",
+			"path": "src/app"
+		},
+		{
+			"name": "@app/router",
+			"path": "src/modules/router"
+		},
+		{
+			"name": "@app/auth",
+			"path": "src/modules/auth"
+		},
+		{
+			"name": "@app/dashboard",
+			"path": "src/modules/dashboard"
+		},
+		{
+			"name": "@app/shared",
+			"path": "src/modules/shared"
+		}
+	]
+}

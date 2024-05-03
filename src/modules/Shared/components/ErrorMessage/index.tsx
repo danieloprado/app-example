@@ -1,4 +1,5 @@
-import errorFormatter from '../../formatters/error';
+import errorFormatter from '@/formatters/error';
+
 import IconMessage from '../IconMessage';
 
 interface ErrorMessageProps {

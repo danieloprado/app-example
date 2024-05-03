@@ -1,23 +1,33 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
+const fs = require('fs');
 const path = require('path');
 
 const { getSentryExpoConfig } = require('@sentry/react-native/metro');
 
-// Find the project and workspace directories
 const projectRoot = __dirname;
-// This can be replaced with `find-yarn-workspace-root`
-const workspaceRoot = path.resolve(projectRoot, '../');
-
 const config = getSentryExpoConfig(projectRoot);
 
-// 1. Watch all files within the monorepo
-config.watchFolders = [workspaceRoot];
-// 2. Let Metro know where to resolve packages and in what order
-config.resolver.nodeModulesPaths = [
-  path.resolve(projectRoot, 'node_modules'),
-  path.resolve(workspaceRoot, 'node_modules')
-];
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (!moduleName.startsWith('@/')) {
+    return context.resolveRequest(context, moduleName, platform);
+  }
 
-// 3. Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
-// config.resolver.disableHierarchicalLookup = true;
+  const module = /\/src\/modules\/([a-zA-Z]+)\//gim.exec(context.originModulePath)?.[1];
+
+  if (!module) {
+    return context.resolveRequest(context, moduleName, platform);
+  }
+
+  const baseFile = path.join(__dirname, `/src/modules/${module}`, moduleName.replace('@/', ''));
+  const filePath = ['.tsx', '.ts', '/index.tsx', '/index.ts', '']
+    .map(ext => `${baseFile}${ext}`)
+    .find(filePath => fs.existsSync(filePath));
+
+  if (!filePath) {
+    return context.resolveRequest(context, moduleName, platform);
+  }
+
+  return { filePath, type: 'sourceFile' };
+};
+
 module.exports = config;

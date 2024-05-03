@@ -1,9 +1,8 @@
 import { create } from 'zustand';
 import { combine, persist } from 'zustand/middleware';
 
-import { UseNotificationReceivedHandler } from '@/modules/Shared/configs/Notifications/types';
-
 import { jsonStorage } from './storage';
+import { UseNotificationReceivedHandler } from '../configs/Notifications/types';
 
 const useNotificationStore = create(
   persist(

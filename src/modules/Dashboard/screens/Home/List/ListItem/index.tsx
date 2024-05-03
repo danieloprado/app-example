@@ -2,10 +2,11 @@ import { memo, useCallback } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
-import { useNavigation } from '@react-navigation/native';
+import Icon from '@app/shared/components/Icon';
+import { tw } from '@app/shared/tailwind';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-import Icon from '@/modules/Shared/components/Icon';
-import { tw } from '@/tailwind';
+import { HomeRouterParams } from '@/router/Home';
 
 import { ListResponseItem } from '../schema';
 
@@ -14,11 +15,10 @@ interface ItemProps {
 }
 
 const ListItem = ({ data }: ItemProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<HomeRouterParams>>();
 
   const onPress = useCallback(() => {
     navigation.navigate('Details', data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, navigation]);
 
   return (

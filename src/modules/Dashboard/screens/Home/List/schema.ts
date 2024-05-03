@@ -1,5 +1,5 @@
-import { SupportedIcons } from '@/modules/Shared/components/Icon';
-import { PaginationRequest, PaginationResponse } from '@/modules/Shared/schemas/pagination';
+import { SupportedIcons } from '@app/shared/components/Icon';
+import { PaginationRequest, PaginationResponse } from '@app/shared/schemas/pagination';
 
 export type ListResponseItem = {
   id: number;

@@ -1,7 +1,7 @@
 import { decode as base64decode } from 'base-64';
 import { decode as utf8decode } from 'utf8';
 
-import type { CurrentUser } from '@/stores/auth';
+import { CurrentUser } from '../stores/auth';
 
 export function decodeToken(token: string | null | undefined): any | null;
 export function decodeToken(token: string | null | undefined): CurrentUser | null;

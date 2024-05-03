@@ -1,13 +1,13 @@
 import { Text } from 'react-native-paper';
 
+import Content from '@app/shared/components/Content';
+import AppHeader from '@app/shared/components/Header';
 import { useRoute } from '@react-navigation/native';
 
-import Content from '@/modules/Shared/components/Content';
-import AppHeader from '@/modules/Shared/components/Header';
-import { AppRouteUseParams } from '@/router';
+import { HomeRouterProps } from '@/router/Home';
 
 const DetailsScreen = () => {
-  const { params } = useRoute<AppRouteUseParams<'Details'>>();
+  const { params } = useRoute<HomeRouterProps<'Details'>['route']>();
 
   return (
     <>

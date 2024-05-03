@@ -1,10 +1,9 @@
+import { post } from '@app/shared/api';
+import useAuthStore from '@app/shared/stores/auth';
+import useNotificationStore from '@app/shared/stores/notification';
+import { getDeviceName } from '@app/shared/utils/device';
 import analytics from '@react-native-firebase/analytics';
 import { useMutation } from '@tanstack/react-query';
-
-import { post } from '@/api';
-import { getDeviceName } from '@/modules/Shared/utils/device';
-import useAuthStore from '@/stores/auth';
-import useNotificationStore from '@/stores/notification';
 
 import { AuthLoginRequest, AuthLoginResponse } from './schema';
 

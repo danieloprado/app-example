@@ -1,11 +1,10 @@
+import slugify from '@app/shared/utils/slugify';
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
 import * as Sentry from '@sentry/react-native';
 
-import { IS_DEV, SENTRY_DSN } from '@/envs';
-import { Toast } from '@/feedback';
-import slugify from '@/modules/Shared/utils/slugify';
-
+import { IS_DEV, SENTRY_DSN } from './envs';
+import { Toast } from './feedback';
 import useAuthStore from './stores/auth';
 import useNavigationStore from './stores/navigation';
 

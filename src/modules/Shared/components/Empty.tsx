@@ -1,9 +1,8 @@
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 
-import { tw } from '@/tailwind';
-
 import Icon from './Icon';
+import { tw } from '../tailwind';
 
 const Empty = () => {
   return (

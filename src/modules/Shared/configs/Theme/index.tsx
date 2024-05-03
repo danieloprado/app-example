@@ -5,13 +5,13 @@ import * as NavigationBar from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useDeviceContext } from 'twrnc';
 
+import Icon from '@/components/Icon';
+import { IS_ANDROID } from '@/envs';
 import { tw } from '@/tailwind';
 
-import Icon from '../../components/Icon';
-
 SystemUI.setBackgroundColorAsync('#FFFFFF').catch(() => null);
-NavigationBar.setBackgroundColorAsync('#FFFFFF').catch(() => null);
-NavigationBar.setButtonStyleAsync('light').catch(() => null);
+IS_ANDROID && NavigationBar.setBackgroundColorAsync('#FFFFFF').catch(() => null);
+IS_ANDROID && NavigationBar.setButtonStyleAsync('light').catch(() => null);
 
 const theme = {
   ...MD3LightTheme,

@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 
 import { IS_DEV } from '@/envs';
-import { decodeToken } from '@/modules/Shared/utils/jwt';
 import useAuthStore from '@/stores/auth';
 import useNotificationStore from '@/stores/notification';
+import { decodeToken } from '@/utils/jwt';
 
 import { _apiMock } from './_mock';
 import ApiError from './error';

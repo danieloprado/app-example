@@ -6,8 +6,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 
 import useAuthStore from '@/stores/auth';
 import useNavigationStore from '@/stores/navigation';
-
-import slugify from '../../utils/slugify';
+import slugify from '@/utils/slugify';
 
 const startedInBackground = AppState.currentState === 'background';
 

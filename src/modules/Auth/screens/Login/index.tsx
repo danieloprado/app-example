@@ -2,18 +2,18 @@ import { Image, ImageBackground } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import Content from '@app/shared/components/Content';
+import Form from '@app/shared/components/Forms/Form';
+import PasswordField from '@app/shared/components/Forms/PasswordField';
+import TextField from '@app/shared/components/Forms/TextField';
+import useForm from '@app/shared/components/Forms/useForm';
+import AppStatusBar from '@app/shared/components/StatusBar';
+import useAuthStore from '@app/shared/stores/auth';
+import { tw } from '@app/shared/tailwind';
 import { useFocusEffect } from '@react-navigation/native';
 
 import background from '@/assets/background.png';
 import logo from '@/assets/logo.png';
-import Content from '@/modules/Shared/components/Content';
-import Form from '@/modules/Shared/components/Forms/Form';
-import PasswordField from '@/modules/Shared/components/Forms/PasswordField';
-import TextField from '@/modules/Shared/components/Forms/TextField';
-import useForm from '@/modules/Shared/components/Forms/useForm';
-import AppStatusBar from '@/modules/Shared/components/StatusBar';
-import useAuthStore from '@/stores/auth';
-import { tw } from '@/tailwind';
 
 import { authLoginSchema, AuthLoginRequest } from './schema';
 import useLoginMutation from './useLoginMutation';

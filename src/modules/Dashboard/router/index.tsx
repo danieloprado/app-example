@@ -1,17 +1,31 @@
 import { useMemo } from 'react';
 
-import { createBottomTabNavigator, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-
-import { IS_ANDROID, IS_OLD_IPHONE } from '@/envs';
-import Icon from '@/modules/Shared/components/Icon';
+import Icon from '@app/shared/components/Icon';
+import { IS_ANDROID, IS_OLD_IPHONE } from '@app/shared/envs';
+import {
+  createBottomTabNavigator,
+  BottomTabNavigationOptions,
+  BottomTabScreenProps
+} from '@react-navigation/bottom-tabs';
+import type { NavigatorScreenParams } from '@react-navigation/native';
 
 import HomeRouter, { HomeRouterParams } from './Home';
 import OptionsScreen from '../screens/Options';
 
 export type DashboardRouterParams = {
-  Home: undefined;
+  Home: NavigatorScreenParams<HomeRouterParams>;
   Options: undefined;
-} & HomeRouterParams;
+};
+
+// export type DashboardRouterProps<T extends keyof DashboardRouterParams> = CompositeScreenProps<
+//   BottomTabScreenProps<DashboardRouterParams, T>,
+//   RootStackScreenProps<keyof RootRouterParams>
+// >;
+
+export type DashboardRouterProps<T extends keyof DashboardRouterParams> = BottomTabScreenProps<
+  DashboardRouterParams,
+  T
+>;
 
 const Tab = createBottomTabNavigator<DashboardRouterParams>();
 
@@ -29,26 +43,24 @@ const DashboardRouter = () => {
   );
 
   return (
-    <>
-      <Tab.Navigator initialRouteName='Home' screenOptions={screenOptions}>
-        <Tab.Screen
-          name='Home'
-          component={HomeRouter}
-          options={{
-            tabBarLabel: 'Dashboard',
-            tabBarIcon: ({ color }) => <Icon color={color} name='view-dashboard' size={30} />
-          }}
-        />
-        <Tab.Screen
-          name='Options'
-          component={OptionsScreen}
-          options={{
-            tabBarLabel: 'Opções',
-            tabBarIcon: ({ color }) => <Icon color={color} name='cog' size={30} />
-          }}
-        />
-      </Tab.Navigator>
-    </>
+    <Tab.Navigator initialRouteName='Home' screenOptions={screenOptions}>
+      <Tab.Screen
+        name='Home'
+        component={HomeRouter}
+        options={{
+          tabBarLabel: 'Dashboard',
+          tabBarIcon: ({ color }) => <Icon color={color} name='view-dashboard' size={30} />
+        }}
+      />
+      <Tab.Screen
+        name='Options'
+        component={OptionsScreen}
+        options={{
+          tabBarLabel: 'Opções',
+          tabBarIcon: ({ color }) => <Icon color={color} name='cog' size={30} />
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

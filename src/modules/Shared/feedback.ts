@@ -1,6 +1,6 @@
 import ToastNative from 'react-native-toast-message';
 
-import errorFormatter from '@/modules/Shared/formatters/error';
+import errorFormatter from './formatters/error';
 
 export const Toast = {
   success(message: string, title?: string) {

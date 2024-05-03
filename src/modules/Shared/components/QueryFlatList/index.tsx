@@ -3,8 +3,8 @@ import { FlatList, FlatListProps, InteractionManager, ListRenderItemInfo, StyleS
 import { ActivityIndicator } from 'react-native-paper';
 
 import { UseQueryPaginatedResult } from '@/hooks/useQueryPaginated';
+import { PaginationRequest } from '@/schemas/pagination';
 
-import { PaginationRequest } from '../../schemas/pagination';
 import Empty from '../Empty';
 import ErrorMessage from '../ErrorMessage';
 import AppRefreshControl from '../RefreshControl';

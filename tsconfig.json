@@ -2,12 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "skipLibCheck": true,
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+    "strict": true
   },
   "include": [
     "**/*.ts",

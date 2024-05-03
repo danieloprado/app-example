@@ -1,6 +1,10 @@
 {
-  "name": "@tracers/app",
+  "name": "@app/workspaces",
   "private": true,
+  "workspaces": [
+    "./src/app",
+    "./src/modules/*"
+  ],
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
