@@ -4,7 +4,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Router from '@app/router';
 import Analytics from '@app/shared/configs/Analytics';
-import ErrorHandler from '@app/shared/configs/ErrorHandler';
 import KeepWake from '@app/shared/configs/KeepAwake';
 import NotificationsConfig from '@app/shared/configs/Notifications';
 import ReactQueryConfig from '@app/shared/configs/ReactQuery';
@@ -12,6 +11,8 @@ import ConfigTheme from '@app/shared/configs/Theme';
 import ToastConfig from '@app/shared/configs/Toast';
 import UpdateChecker from '@app/shared/configs/UpdateChecker';
 import { IS_DEV } from '@app/shared/envs';
+
+import ErrorHandler from '@/ErrorHandler';
 
 function App(): JSX.Element {
   return (

@@ -2,8 +2,8 @@ import { Component, ReactNode } from 'react';
 import { Alert } from 'react-native';
 import RNRestart from 'react-native-restart';
 
-import { IS_DEV } from '@/envs';
-import { logError, logEvent } from '@/log';
+import { IS_DEV } from '@app/shared/envs';
+import { logError, logEvent } from '@app/shared/log';
 
 ErrorUtils.setGlobalHandler((err, isFatal) => {
   if (!err || IS_DEV) {
