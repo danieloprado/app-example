@@ -2,42 +2,16 @@ import { ReactNode, useCallback, useMemo, useRef } from 'react';
 import { InteractionManager } from 'react-native';
 import { Portal, useTheme } from 'react-native-paper';
 
-import AuthRouter, { AuthRouterParams } from '@app/auth/router';
-import DashboardRouter, { DashboardRouterParams } from '@app/dashboard/router';
+import AuthRouter from '@app/auth/router';
+import DashboardRouter from '@app/dashboard/router';
 import { IS_ANDROID } from '@app/shared/envs';
 import useAuthStore from '@app/shared/stores/auth';
 import useNavigationStore from '@app/shared/stores/navigation';
-import {
-  NavigationContainer,
-  NavigationContainerRef,
-  RouteProp,
-  Theme,
-  NavigatorScreenParams
-} from '@react-navigation/native';
-import {
-  NativeStackNavigationOptions,
-  createNativeStackNavigator,
-  NativeStackScreenProps
-} from '@react-navigation/native-stack';
+import { NavigationContainer, NavigationContainerRef, Theme } from '@react-navigation/native';
+import { NativeStackNavigationOptions, createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 
-export type RootRouterParams = {
-  Dashboard: NavigatorScreenParams<DashboardRouterParams>;
-  Auth: NavigatorScreenParams<AuthRouterParams>;
-};
-
-export type AppRoutes = keyof RootRouterParams;
-export type AppRouteParams<T extends AppRoutes> = RootRouterParams[T];
-export type AppRouteUseParams<T extends AppRoutes> = RouteProp<RootRouterParams, T>;
-
-export type RootStackScreenProps<T extends keyof RootRouterParams> = NativeStackScreenProps<RootRouterParams, T>;
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    interface RootParamList extends RootRouterParams {}
-  }
-}
+import { RootRouterParams } from './types';
 
 const Stack = createNativeStackNavigator<RootRouterParams>();
 

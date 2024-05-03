@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 
+import type { RootRouterParams, RootStackScreenProps } from '@app/router/types';
 import Icon from '@app/shared/components/Icon';
 import { IS_ANDROID, IS_OLD_IPHONE } from '@app/shared/envs';
 import {
@@ -7,7 +8,7 @@ import {
   BottomTabNavigationOptions,
   BottomTabScreenProps
 } from '@react-navigation/bottom-tabs';
-import type { NavigatorScreenParams } from '@react-navigation/native';
+import type { NavigatorScreenParams, CompositeScreenProps } from '@react-navigation/native';
 
 import HomeRouter, { HomeRouterParams } from './Home';
 import OptionsScreen from '../screens/Options';
@@ -17,14 +18,9 @@ export type DashboardRouterParams = {
   Options: undefined;
 };
 
-// export type DashboardRouterProps<T extends keyof DashboardRouterParams> = CompositeScreenProps<
-//   BottomTabScreenProps<DashboardRouterParams, T>,
-//   RootStackScreenProps<keyof RootRouterParams>
-// >;
-
-export type DashboardRouterProps<T extends keyof DashboardRouterParams> = BottomTabScreenProps<
-  DashboardRouterParams,
-  T
+export type DashboardRouterProps<T extends keyof DashboardRouterParams> = CompositeScreenProps<
+  BottomTabScreenProps<DashboardRouterParams, T>,
+  RootStackScreenProps<keyof RootRouterParams>
 >;
 
 const Tab = createBottomTabNavigator<DashboardRouterParams>();
