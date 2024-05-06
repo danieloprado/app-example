@@ -12,15 +12,19 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     return context.resolveRequest(context, moduleName, platform);
   }
 
-  const module = /\/src\/modules\/([a-zA-Z]+)\//gim.exec(context.originModulePath)?.[1];
+  const module = /[\/\\]src[\/\\]((?:modules[\/\\])?[a-zA-Z]+)[\/\\]/gim.exec(context.originModulePath)?.[1];
 
   if (!module) {
     return context.resolveRequest(context, moduleName, platform);
   }
 
-  const baseFile = path.join(__dirname, `/src/modules/${module}`, moduleName.replace('@/', ''));
-  const filePath = ['.tsx', '.ts', '/index.tsx', '/index.ts', '']
-    .map(ext => `${baseFile}${ext}`)
+  const baseFile = path.join(__dirname, 'src', module, ...moduleName.replace('@/', '').split('/'));
+  const filePath = ['.tsx', '.ts', 'index.tsx', 'index.ts', '']
+    .map(ext => {
+      if (!ext) return baseFile;
+      if (ext.startsWith('.')) return `${baseFile}${ext}`;
+      return path.join(baseFile, ext);
+    })
     .find(filePath => fs.existsSync(filePath));
 
   if (!filePath) {
