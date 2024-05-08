@@ -66,6 +66,34 @@ module.exports = {
       'expo-tracking-transparency',
       { userTrackingPermission: '$(PRODUCT_NAME) will use this identifier to deliver personalized experience to you.' }
     ],
+    [
+      'expo-font',
+      {
+        fonts: [
+          './assets/fonts/FiraCode/firacode_bold.ttf',
+          './assets/fonts/FiraCode/firacode_light.ttf',
+          './assets/fonts/FiraCode/firacode_medium.ttf',
+          './assets/fonts/FiraCode/firacode_regular.ttf',
+          './assets/fonts/FiraCode/firacode_semibold.ttf'
+        ]
+      }
+    ],
+    [
+      'expo-xml-font',
+      [
+        {
+          name: 'Fira Code',
+          folder: './assets/fonts/FiraCode',
+          variants: [
+            { fontFile: 'firacode_light', fontWeight: 300 },
+            { fontFile: 'firacode_regular', fontWeight: 400 },
+            { fontFile: 'firacode_medium', fontWeight: 500 },
+            { fontFile: 'firacode_semibold', fontWeight: 600 },
+            { fontFile: 'firacode_bold', fontWeight: 700 }
+          ]
+        }
+      ]
+    ],
     './assets/expo-fix-plugin.js',
     './assets/expo-linking.js',
     'expo-tracking-transparency'

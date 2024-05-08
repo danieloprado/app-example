@@ -12,6 +12,8 @@ import ToastConfig from '@app/shared/configs/Toast';
 import UpdateChecker from '@app/shared/configs/UpdateChecker';
 import { IS_DEV } from '@app/shared/envs';
 
+import { MdsAppProvider } from '@mds/core/mdsAppProvider';
+
 import ErrorHandler from '@/ErrorHandler';
 
 function App(): JSX.Element {
@@ -19,18 +21,20 @@ function App(): JSX.Element {
     <ErrorHandler>
       <GestureHandlerRootView style={StyleSheet.absoluteFill}>
         <SafeAreaProvider>
-          <ReactQueryConfig>
-            <ConfigTheme>
-              <Router>
-                <NotificationsConfig />
-                <UpdateChecker />
-              </Router>
+          <MdsAppProvider>
+            <ReactQueryConfig>
+              <ConfigTheme>
+                <Router>
+                  <NotificationsConfig />
+                  <UpdateChecker />
+                </Router>
 
-              {IS_DEV && <KeepWake tag='app-dev' />}
-              <ToastConfig />
-              <Analytics />
-            </ConfigTheme>
-          </ReactQueryConfig>
+                {IS_DEV && <KeepWake tag='app-dev' />}
+                <ToastConfig />
+                <Analytics />
+              </ConfigTheme>
+            </ReactQueryConfig>
+          </MdsAppProvider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </ErrorHandler>

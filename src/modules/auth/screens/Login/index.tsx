@@ -1,4 +1,4 @@
-import { Image, ImageBackground } from 'react-native';
+import { Image, ImageBackground, Text } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -11,6 +11,8 @@ import AppStatusBar from '@app/shared/components/StatusBar';
 import useAuthStore from '@app/shared/stores/auth';
 import { tw } from '@app/shared/tailwind';
 import { useFocusEffect } from '@react-navigation/native';
+
+import { MdsText } from '@mds/general/mdsText';
 
 import background from '@/assets/background.png';
 import logo from '@/assets/logo.png';
@@ -54,6 +56,9 @@ const LoginScreen = () => {
           />
 
           <Form.Submit>Entrar</Form.Submit>
+
+          <MdsText textStyleDefinition='body-100-06'>Olá</MdsText>
+          <Text style={{ fontFamily: 'Fira Code', fontWeight: '600' }}>FIRA CODE</Text>
         </Form>
       </Content>
     </ImageBackground>

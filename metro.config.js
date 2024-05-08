@@ -34,4 +34,19 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
   return { filePath, type: 'sourceFile' };
 };
 
+config.resolver.extraNodeModules = {
+  '@mds/core': path.resolve(__dirname, '../mds-shared-component-library/src/packages/core'),
+  '@mds/general': path.resolve(__dirname, '../mds-shared-component-library/src/packages/general'),
+  'react': path.resolve(__dirname, 'node_modules/react'),
+  'react-native': path.resolve(__dirname, 'node_modules/react-native')
+};
+
+config.watchFolders = [
+  path.resolve(__dirname, '../mds-shared-component-library/src/packages/core'),
+  path.resolve(__dirname, '../mds-shared-component-library/src/packages/general')
+];
+
+config.resolver.unstable_enablePackageExports = true;
+config.resolver.unstable_conditionNames = ['@mds/*'];
+
 module.exports = config;
