@@ -119,17 +119,17 @@ module.exports = {
           folder: '../mds-shared-component-library/src/packages/core/src/providers/mdsFontProvider/fonts/opensans/font',
           variants: [
             { fontFile: 'opensans_extrabold', fontWeight: 800, italic: false },
-            { fontFile: 'opensans_extrabolditalic', fontWeight: 800, italic: false },
+            { fontFile: 'opensans_extrabolditalic', fontWeight: 800, italic: true },
             { fontFile: 'opensans_bold', fontWeight: 700, italic: false },
-            { fontFile: 'opensans_bolditalic', fontWeight: 700, italic: false },
+            { fontFile: 'opensans_bolditalic', fontWeight: 700, italic: true },
             { fontFile: 'opensans_semibold', fontWeight: 600, italic: false },
-            { fontFile: 'opensans_semibolditalic', fontWeight: 600, italic: false },
+            { fontFile: 'opensans_semibolditalic', fontWeight: 600, italic: true },
             { fontFile: 'opensans_medium', fontWeight: 500, italic: false },
-            { fontFile: 'opensans_mediumitalic', fontWeight: 500, italic: false },
+            { fontFile: 'opensans_mediumitalic', fontWeight: 500, italic: true },
             { fontFile: 'opensans_regular', fontWeight: 400, italic: false },
-            { fontFile: 'opensans_regularitalic', fontWeight: 400, italic: false },
+            { fontFile: 'opensans_regularitalic', fontWeight: 400, italic: true },
             { fontFile: 'opensans_light', fontWeight: 300, italic: false },
-            { fontFile: 'opensans_lightitalic', fontWeight: 300, italic: false }
+            { fontFile: 'opensans_lightitalic', fontWeight: 300, italic: true }
           ]
         }
       ]
