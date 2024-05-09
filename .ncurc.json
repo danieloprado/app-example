@@ -4,6 +4,9 @@
     "@sentry/react-native",
     "expo-build-properties",
     "expo-dev-client",
+    "eslint",
+    "react",
+    "@types/react",
     "react-native",
     "react-native-safe-area-context"
   ]

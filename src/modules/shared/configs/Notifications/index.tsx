@@ -3,7 +3,6 @@ import { InteractionManager } from 'react-native';
 
 import { useNetInfo } from '@react-native-community/netinfo';
 import messaging from '@react-native-firebase/messaging';
-import { useNavigation } from '@react-navigation/native';
 import * as Notifications from 'expo-notifications';
 
 import { refreshSession } from '@/api';
@@ -31,7 +30,7 @@ messaging().setBackgroundMessageHandler(async message => {
 const NotificationsConfig = () => {
   const { isInternetReachable } = useNetInfo();
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const isAuthenticated = useAuthStore(store => store.isAuthenticated());
   const currentUser = useAuthStore(store => store.currentUser);
   const receivedHandlers = useNotificationStore(store => store.receivedHandlers);
@@ -50,13 +49,13 @@ const NotificationsConfig = () => {
       }
 
       if (payload.navigateTo) {
-        const params = JSON.parse(payload.params ?? '{}');
-        InteractionManager.runAfterInteractions(() =>
-          navigation.navigate({
-            name: payload.navigateTo as any,
-            params: { refresh: Date.now(), ...params }
-          })
-        );
+        // const params = JSON.parse(payload.params ?? '{}');
+        InteractionManager.runAfterInteractions(() => {
+          // navigation.navigate({
+          //   name: payload.navigateTo as any,
+          //   params: { refresh: Date.now(), ...params }
+          // })
+        });
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

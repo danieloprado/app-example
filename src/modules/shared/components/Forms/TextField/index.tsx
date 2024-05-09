@@ -8,7 +8,7 @@ import FormContext from '../Form/context';
 
 export type TextFieldRef = NativeTextInput;
 
-export interface TextFieldProps<V extends FieldValues = FieldValues> extends TextInputProps {
+export interface TextFieldProps<V extends FieldValues = FieldValues> extends Omit<TextInputProps, 'tabIndex'> {
   name?: FieldPath<V>;
   tabIndex?: number;
   loading?: boolean;

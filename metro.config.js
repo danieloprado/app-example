@@ -4,8 +4,10 @@ const path = require('path');
 
 const { getSentryExpoConfig } = require('@sentry/react-native/metro');
 
+const mdsMetroConfig = require('@mds/core/metro-config');
+
 const projectRoot = __dirname;
-const config = getSentryExpoConfig(projectRoot);
+const config = mdsMetroConfig(getSentryExpoConfig(projectRoot));
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (!moduleName.startsWith('@/')) {
@@ -45,8 +47,5 @@ config.watchFolders = [
   path.resolve(__dirname, '../mds-shared-component-library/src/packages/core'),
   path.resolve(__dirname, '../mds-shared-component-library/src/packages/general')
 ];
-
-config.resolver.unstable_enablePackageExports = true;
-config.resolver.unstable_conditionNames = ['@mds/*'];
 
 module.exports = config;

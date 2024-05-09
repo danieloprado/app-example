@@ -3,10 +3,21 @@
   "compilerOptions": {
     "moduleResolution": "bundler",
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "moduleSuffixes": [".native", ""],
+    "paths": {
+      "@/*": [
+        "./src/app/*", 
+        "./src/modules/shared/*", 
+        "./src/modules/dashboard/*", 
+        "./src/modules/router/*", 
+        "./src/modules/auth/*"
+      ]
+    }
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "./declarations.d.ts",
+    "./**/*.ts",
+    "./**/*.tsx"
   ]
 }

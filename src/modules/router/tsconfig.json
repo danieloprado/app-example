@@ -2,9 +2,12 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
-  }
+  },
+  "include": [
+    "../../../declarations.d.ts",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ]
 }

@@ -66,7 +66,7 @@ module.exports = {
       'expo-tracking-transparency',
       { userTrackingPermission: '$(PRODUCT_NAME) will use this identifier to deliver personalized experience to you.' }
     ],
-    './assets/expo-fonts.js',
+    '@mds/core/expo-plugin',
     './assets/expo-fix-plugin.js',
     './assets/expo-linking.js',
     'expo-tracking-transparency'
