@@ -2,8 +2,6 @@ import { ReactNode, useCallback, useMemo, useRef } from 'react';
 import { InteractionManager } from 'react-native';
 import { Portal, useTheme } from 'react-native-paper';
 
-import AuthRouter from '@app/auth/router';
-import DashboardRouter from '@app/dashboard/router';
 import { IS_ANDROID } from '@app/shared/envs';
 import useAuthStore from '@app/shared/stores/auth';
 import useNavigationStore from '@app/shared/stores/navigation';
@@ -80,13 +78,13 @@ const Router = ({ children }: { children?: ReactNode }) => {
         <Stack.Navigator initialRouteName='Dashboard' screenOptions={screenOptions}>
           {isAuthenticated && (
             <>
-              <Stack.Screen name='Dashboard' component={DashboardRouter} />
+              <Stack.Screen name='Dashboard' getComponent={() => require('@app/dashboard/router').default} />
             </>
           )}
 
           {!isAuthenticated && (
             <>
-              <Stack.Screen name='Auth' component={AuthRouter} />
+              <Stack.Screen name='Auth' getComponent={() => require('@app/auth/router').default} />
             </>
           )}
         </Stack.Navigator>

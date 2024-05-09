@@ -5,7 +5,7 @@
 			"path": "."
 		},
 		{
-			"name": "@app/app",
+			"name": "app",
 			"path": "src/app"
 		},
 		{
